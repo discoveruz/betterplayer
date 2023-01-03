@@ -426,10 +426,13 @@ class _BetterPlayerCupertinoControlsState
 
     return Padding(
       padding: const EdgeInsets.only(right: 12.0),
-      child: Text(
-        '-${BetterPlayerUtils.formatDuration(position)}',
-        style:
-            TextStyle(color: _controlsConfiguration.textColor, fontSize: 12.0),
+      child: SizedBox(
+        width: 62,
+        child: Text(
+          '-${BetterPlayerUtils.formatDuration(position)}',
+          style: TextStyle(
+              color: _controlsConfiguration.textColor, fontSize: 12.0),
+        ),
       ),
     );
   }

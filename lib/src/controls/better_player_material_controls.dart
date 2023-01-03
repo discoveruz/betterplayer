@@ -328,8 +328,9 @@ class _BetterPlayerMaterialControlsState
     return Text(
       _betterPlayerController!.translations.controlsLive,
       style: TextStyle(
-          color: _controlsConfiguration.liveTextColor,
-          fontWeight: FontWeight.bold),
+        color: _controlsConfiguration.liveTextColor,
+        fontWeight: FontWeight.bold,
+      ),
     );
   }
 
