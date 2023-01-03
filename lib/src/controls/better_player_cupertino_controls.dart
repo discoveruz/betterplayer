@@ -407,16 +407,13 @@ class _BetterPlayerCupertinoControlsState
     final position =
         _latestValue != null ? _latestValue!.position : const Duration();
 
-    return Padding(
-      padding: const EdgeInsets.only(right: 12.0),
-      child: SizedBox(
-        width: 57.0,
-        child: Text(
-          BetterPlayerUtils.formatDuration(position),
-          style: TextStyle(
-            color: _controlsConfiguration.textColor,
-            fontSize: 12.0,
-          ),
+    return SizedBox(
+      width: 57.0,
+      child: Text(
+        BetterPlayerUtils.formatDuration(position),
+        style: TextStyle(
+          color: _controlsConfiguration.textColor,
+          fontSize: 12.0,
         ),
       ),
     );
