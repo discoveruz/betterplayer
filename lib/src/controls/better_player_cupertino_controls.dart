@@ -628,7 +628,7 @@ class _BetterPlayerCupertinoControlsState
   Widget _buildProgressBar() {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.only(right: 12.0),
+        padding: const EdgeInsets.only(right: 1.0),
         child: BetterPlayerCupertinoVideoProgressBar(
           _controller,
           _betterPlayerController,
