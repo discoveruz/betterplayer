@@ -415,6 +415,7 @@ class _BetterPlayerCupertinoControlsState
           color: _controlsConfiguration.textColor,
           fontSize: 12.0,
         ),
+        textAlign: TextAlign.center,
       ),
     );
   }
@@ -424,15 +425,15 @@ class _BetterPlayerCupertinoControlsState
         ? _latestValue!.duration! - _latestValue!.position
         : const Duration();
 
-    return Padding(
-      padding: const EdgeInsets.only(right: 12.0),
-      child: SizedBox(
-        width: 62,
-        child: Text(
-          '-${BetterPlayerUtils.formatDuration(position)}',
-          style: TextStyle(
-              color: _controlsConfiguration.textColor, fontSize: 12.0),
+    return SizedBox(
+      width: 62,
+      child: Text(
+        '-${BetterPlayerUtils.formatDuration(position)}',
+        style: TextStyle(
+          color: _controlsConfiguration.textColor,
+          fontSize: 12.0,
         ),
+        textAlign: TextAlign.center,
       ),
     );
   }
@@ -641,11 +642,11 @@ class _BetterPlayerCupertinoControlsState
             cancelAndRestartTimer();
           },
           colors: BetterPlayerProgressColors(
-              playedColor: _controlsConfiguration.progressBarPlayedColor,
-              handleColor: _controlsConfiguration.progressBarHandleColor,
-              bufferedColor: _controlsConfiguration.progressBarBufferedColor,
-              backgroundColor:
-                  _controlsConfiguration.progressBarBackgroundColor),
+            playedColor: _controlsConfiguration.progressBarPlayedColor,
+            handleColor: _controlsConfiguration.progressBarHandleColor,
+            bufferedColor: _controlsConfiguration.progressBarBufferedColor,
+            backgroundColor: _controlsConfiguration.progressBarBackgroundColor,
+          ),
         ),
       ),
     );
