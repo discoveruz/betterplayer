@@ -31,7 +31,13 @@ class BetterPlayerCupertinoControls extends StatefulWidget {
 
 class _BetterPlayerCupertinoControlsState
     extends BetterPlayerControlsState<BetterPlayerCupertinoControls> {
-  final marginSize = 5.0;
+  bool get isFullScreen {
+    if (_betterPlayerController?.isFullScreen == true) {
+      return true;
+    }
+    return false;
+  }
+
   VideoPlayerValue? _latestValue;
   double? _latestVolume;
   Timer? _hideTimer;
@@ -172,7 +178,7 @@ class _BetterPlayerCupertinoControlsState
       onEnd: _onPlayerHide,
       child: Container(
         alignment: Alignment.bottomCenter,
-        margin: EdgeInsets.all(marginSize),
+        margin: EdgeInsets.all(isFullScreen ? 28 : 5),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Container(
@@ -488,9 +494,9 @@ class _BetterPlayerCupertinoControlsState
     return Container(
       height: barHeight,
       margin: EdgeInsets.only(
-        top: marginSize,
-        right: marginSize,
-        left: marginSize,
+        top: isFullScreen ? 28 : 5,
+        right: isFullScreen ? 28 : 5,
+        left: isFullScreen ? 28 : 5,
       ),
       child: Row(
         children: <Widget>[
