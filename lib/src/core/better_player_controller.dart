@@ -263,16 +263,25 @@ class BetterPlayerController {
     }
 
     if (_isDataSourceAsms(betterPlayerDataSource)) {
-      _setupAsmsDataSource(betterPlayerDataSource).then((dynamic value) {
-        _setupSubtitles();
-      });
+      await _setupAsmsDataSource(betterPlayerDataSource);
+      _setupSubtitles();
     } else {
       _setupSubtitles();
     }
 
     ///Process data source
     await _setupDataSource(betterPlayerDataSource);
-    setTrack(BetterPlayerAsmsTrack.defaultTrack());
+    if (_betterPlayerAsmsTracks.isNotEmpty) {
+      final index = _betterPlayerAsmsTracks.indexWhere((element) => element.height == 720);
+      if (index.isNegative) {
+        setTrack(BetterPlayerAsmsTrack.defaultTrack());
+      } else {
+        final track = _betterPlayerAsmsTracks[index];
+        setTrack(track);
+      }
+    } else {
+      setTrack(BetterPlayerAsmsTrack.defaultTrack());
+    }
   }
 
   ///Configure subtitles based on subtitles source.
