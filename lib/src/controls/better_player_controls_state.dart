@@ -281,8 +281,10 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
       if (track.height == 0 && track.width == 0 && track.bitrate == 0) {
         preferredName = betterPlayerController!.translations.qualityAuto;
       } else {
-        preferredName =
-            asmsTrackNames.length > index ? asmsTrackNames[index] : null;
+        preferredName = asmsTrackNames
+            .firstWhereOrNull((element) => element.contains('${track.height}'));
+        // preferredName ??=
+        //     asmsTrackNames.length > index ? asmsTrackNames[index] : null;
       }
       children.add(_buildTrackRow(asmsTracks[index], preferredName));
     }
