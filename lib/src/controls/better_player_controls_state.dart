@@ -69,13 +69,13 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
       child: Container(
         child: Column(
           children: [
-            if (betterPlayerControlsConfiguration.enablePlaybackSpeed)
-              _buildMoreOptionsListRow(
-                  betterPlayerControlsConfiguration.playbackSpeedIcon,
-                  translations.overflowMenuPlaybackSpeed, () {
-                Navigator.of(context).pop();
-                _showSpeedChooserWidget();
-              }),
+            // if (betterPlayerControlsConfiguration.enablePlaybackSpeed)
+            //   _buildMoreOptionsListRow(
+            //       betterPlayerControlsConfiguration.playbackSpeedIcon,
+            //       translations.overflowMenuPlaybackSpeed, () {
+            //     Navigator.of(context).pop();
+            //     _showSpeedChooserWidget();
+            //   }),
             if (betterPlayerControlsConfiguration.enableSubtitles)
               _buildMoreOptionsListRow(
                   betterPlayerControlsConfiguration.subtitlesIcon,
@@ -83,13 +83,13 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
                 Navigator.of(context).pop();
                 _showSubtitlesSelectionWidget();
               }),
-            if (betterPlayerControlsConfiguration.enableQualities)
-              _buildMoreOptionsListRow(
-                  betterPlayerControlsConfiguration.qualitiesIcon,
-                  translations.overflowMenuQuality, () {
-                Navigator.of(context).pop();
-                _showQualitiesSelectionWidget();
-              }),
+            // if (betterPlayerControlsConfiguration.enableQualities)
+            //   _buildMoreOptionsListRow(
+            //       betterPlayerControlsConfiguration.qualitiesIcon,
+            //       translations.overflowMenuQuality, () {
+            //     Navigator.of(context).pop();
+            //     _showQualitiesSelectionWidget();
+            //   }),
             if (betterPlayerControlsConfiguration.enableAudioTracks)
               _buildMoreOptionsListRow(
                   betterPlayerControlsConfiguration.audioTracksIcon,
@@ -110,6 +110,132 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
                 ),
               )
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildMaterialPlaybackSpeedButton(
+      bool hideStuff, void Function() onPlayerHide) {
+    if (betterPlayerControlsConfiguration.enablePlaybackSpeed) {
+      return BetterPlayerMaterialClickableWidget(
+        onTap: () {
+          _showSpeedChooserWidget();
+        },
+        child: AnimatedOpacity(
+          opacity: hideStuff ? 0.0 : 1.0,
+          duration: betterPlayerControlsConfiguration.controlsHideTime,
+          onEnd: onPlayerHide,
+          child: Container(
+            height: betterPlayerControlsConfiguration.controlBarHeight,
+            padding: EdgeInsets.all(8),
+            child: Icon(
+              betterPlayerControlsConfiguration.playbackSpeedIcon,
+              color: betterPlayerControlsConfiguration.iconsColor,
+            ),
+          ),
+        ),
+      );
+    } else {
+      return SizedBox();
+    }
+  }
+
+  GestureDetector buildCupertinoPlaybackSpeedButton(
+    Color backgroundColor,
+    Color iconColor,
+    double barHeight,
+    double iconSize,
+    double buttonPadding,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        _showSpeedChooserWidget();
+      },
+      child: AnimatedOpacity(
+        opacity: controlsNotVisible ? 0.0 : 1.0,
+        duration: betterPlayerControlsConfiguration.controlsHideTime,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: backgroundColor,
+            ),
+            child: Container(
+              height: barHeight,
+              padding: EdgeInsets.symmetric(
+                horizontal: buttonPadding,
+              ),
+              child: Icon(
+                betterPlayerControlsConfiguration.playbackSpeedIcon,
+                color: iconColor,
+                size: iconSize,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildMaterialQualitiesButton(
+      bool hideStuff, void Function() onPlayerHide) {
+    if (betterPlayerControlsConfiguration.enableQualities) {
+      return BetterPlayerMaterialClickableWidget(
+        onTap: () {
+          _showQualitiesSelectionWidget();
+        },
+        child: AnimatedOpacity(
+          opacity: hideStuff ? 0.0 : 1.0,
+          duration: betterPlayerControlsConfiguration.controlsHideTime,
+          onEnd: onPlayerHide,
+          child: Container(
+            height: betterPlayerControlsConfiguration.controlBarHeight,
+            padding: EdgeInsets.all(8),
+            child: Icon(
+              betterPlayerControlsConfiguration.qualitiesIcon,
+              color: betterPlayerControlsConfiguration.iconsColor,
+            ),
+          ),
+        ),
+      );
+    } else {
+      return SizedBox();
+    }
+  }
+
+  GestureDetector buildCupertinoQualitiesButton(
+    Color backgroundColor,
+    Color iconColor,
+    double barHeight,
+    double iconSize,
+    double buttonPadding,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        _showQualitiesSelectionWidget();
+      },
+      child: AnimatedOpacity(
+        opacity: controlsNotVisible ? 0.0 : 1.0,
+        duration: betterPlayerControlsConfiguration.controlsHideTime,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: backgroundColor,
+            ),
+            child: Container(
+              height: barHeight,
+              padding: EdgeInsets.symmetric(
+                horizontal: buttonPadding,
+              ),
+              child: Icon(
+                betterPlayerControlsConfiguration.qualitiesIcon,
+                color: iconColor,
+                size: iconSize,
+              ),
+            ),
+          ),
         ),
       ),
     );

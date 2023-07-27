@@ -204,7 +204,9 @@ class _BetterPlayerMaterialControlsState
                           controlsNotVisible, _onPlayerHide)
                     else
                       const SizedBox(),
-                    _buildMoreButton(),
+                    buildMaterialPlaybackSpeedButton(controlsNotVisible, _onPlayerHide),
+                    buildMaterialQualitiesButton(controlsNotVisible, _onPlayerHide),
+                    // _buildMoreButton(),
                   ],
                 ),
               ),

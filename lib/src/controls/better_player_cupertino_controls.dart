@@ -524,9 +524,8 @@ class _BetterPlayerCupertinoControlsState
           else
             const SizedBox(),
           const Spacer(),
-          if (_controlsConfiguration.enableMute)
-            _buildMuteButton(
-              _controller,
+          if (_controlsConfiguration.enablePlaybackSpeed)
+            buildCupertinoPlaybackSpeedButton(
               backgroundColor,
               iconColor,
               barHeight,
@@ -538,8 +537,21 @@ class _BetterPlayerCupertinoControlsState
           const SizedBox(
             width: 4,
           ),
-          if (_controlsConfiguration.enableOverflowMenu)
-            _buildMoreButton(
+          if (_controlsConfiguration.enableQualities)
+            buildCupertinoQualitiesButton(
+              backgroundColor,
+              iconColor,
+              barHeight,
+              iconSize,
+              buttonPadding,
+            )
+          else
+            const SizedBox(),
+          const SizedBox(
+            width: 4,
+          ),
+          if (_controlsConfiguration.enableMute)
+            _buildMuteButton(
               _controller,
               backgroundColor,
               iconColor,
@@ -549,6 +561,17 @@ class _BetterPlayerCupertinoControlsState
             )
           else
             const SizedBox(),
+          // if (_controlsConfiguration.enableOverflowMenu)
+          //   _buildMoreButton(
+          //     _controller,
+          //     backgroundColor,
+          //     iconColor,
+          //     barHeight,
+          //     iconSize,
+          //     buttonPadding,
+          //   )
+          // else
+          //   const SizedBox(),
         ],
       ),
     );
