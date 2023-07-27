@@ -271,17 +271,7 @@ class BetterPlayerController {
 
     ///Process data source
     await _setupDataSource(betterPlayerDataSource);
-    if (_betterPlayerAsmsTracks.isNotEmpty) {
-      final index = _betterPlayerAsmsTracks.indexWhere((element) => element.height == 720);
-      if (index.isNegative) {
-        setTrack(BetterPlayerAsmsTrack.defaultTrack());
-      } else {
-        final track = _betterPlayerAsmsTracks[index];
-        setTrack(track);
-      }
-    } else {
-      setTrack(BetterPlayerAsmsTrack.defaultTrack());
-    }
+    setTrack(BetterPlayerAsmsTrack.defaultTrack());
   }
 
   ///Configure subtitles based on subtitles source.
@@ -915,8 +905,17 @@ class BetterPlayerController {
           "mimeType": track.mimeType,
         }));
 
-    videoPlayerController!
-        .setTrackParameters(track.width, track.height, track.bitrate);
+    if (track.height == 0) {
+      BetterPlayerAsmsTrack defaultTrack = betterPlayerAsmsTracks
+              .firstWhereOrNull((element) => element.height == 720) ??
+          track;
+
+      videoPlayerController!.setTrackParameters(
+          defaultTrack.width, defaultTrack.height, defaultTrack.bitrate);
+    } else {
+      videoPlayerController!
+          .setTrackParameters(track.width, track.height, track.bitrate);
+    }
     _betterPlayerAsmsTrack = track;
   }
 
