@@ -573,9 +573,10 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
   }
 
   void _showModalBottomSheet(List<Widget> children) {
-    Platform.isAndroid
-        ? _showMaterialBottomSheet(children)
-        : _showCupertinoModalBottomSheet(children);
+    return _showMaterialBottomSheet(children);
+    // Platform.isAndroid
+    //     ? _showMaterialBottomSheet(children)
+    //     : _showCupertinoModalBottomSheet(children);
   }
 
   void _showCupertinoModalBottomSheet(List<Widget> children) {
